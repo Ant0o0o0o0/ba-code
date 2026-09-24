@@ -1,16 +1,4 @@
-# Code zur Bachelorarbeit — RegionaleHeterogenitätinder marginalen Konsumquote auf Basis der Vermögensheterogenität - von Anton
-
-Dieses Repository enthält den Code zur Bachelorarbeit *[Titel deiner Arbeit]* von
-*[dein Name]*, *[Hochschule, Jahr]*.
-
-Der Code repliziert in vereinfachter Form den Ansatz von Carroll, Slacalek und
-Tokuoka (2013) auf Basis von SOEP-Daten: Aus regionsspezifischen
-Vermögensverteilungen wird der Diskontfaktor (die „Ungeduld") geschätzt und daraus
-die marginale Konsumneigung (MPC) abgeleitet — getrennt für Ost- und
-Westdeutschland.
-
-> **Wichtig — dies ist kein eigenständiges Projekt.** Die Skripte sind
-> Ergänzungen zu **zwei bestehenden Repositories** und laufen nur innerhalb dieser:
+# Code zur Bachelorarbeit — Regionale Heterogenität in der marginalen Konsumquote auf Basis der Vermögensheterogenität - von Anton Uni Bonn 2026
 >
 > 1. Die Modell-Skripte im Ordner [`pylcm-modell/`](pylcm-modell/) laufen im
 >    Repository **PyLCM** (<https://github.com/OpenSourceEconomics/pylcm>).
@@ -47,7 +35,27 @@ ohne Zugriff auf die SOEP-Rohdaten.
 
 ---
 
-## Teil 1 — Modell (Ordner `pylcm-modell/`)
+## Teil 1 — Datenaufbereitung (Ordner `soep-aufbereitung/`)
+
+Diese Skripte gehören in eine lokale Kopie des **soep-preparation**-Repositories.
+
+**Ausführen** (in der lokalen soep-preparation-Kopie):
+
+```console
+$ pixi run pytask     # baut die Pipeline (führt die task_-Skripte aus)
+```
+
+Die `analyse_`-Skripte müssen anschließend ausgeführt werden bzw. sind in die Pipeline
+eingebunden.
+
+> **SOEP-Rohdaten sind nicht enthalten.** Die Skripte benötigen die lizenzierten
+> SOEP-Core-Rohdaten (Version 41) im Verzeichnis `soep_preparation/data/V41`.
+> Diese Daten dürfen aus lizenzrechtlichen Gründen **nicht** weitergegeben werden
+> und sind daher nicht Teil dieses Repositories.
+
+---
+
+## Teil 2 — Modell (Ordner `pylcm-modell/`)
 
 Diese Skripte gehören in eine lokale Kopie des **PyLCM**-Repositories und werden
 dort im Projektstammverzeichnis abgelegt.
@@ -67,34 +75,10 @@ $ pixi run python stufe4_schaetzung.py   # β̄ schätzen
 $ pixi run python stufe5_mpc.py          # MPC berechnen
 ```
 
-> **Hinweis zu den Importen.** `stufe4_schaetzung.py` und `stufe5_mpc.py`
-> importieren das Modell aus `stufe2_schocks.py`.
+**Hinweis zu den Importen.** `stufe4_schaetzung.py` und `stufe5_mpc.py`
+importieren das Modell aus `stufe2_schocks.py`.
 
-
-## Teil 2 — Datenaufbereitung (Ordner `soep-aufbereitung/`)
-
-Diese Skripte gehören in eine lokale Kopie des **soep-preparation**-Repositories.
-
-**Ausführen** (in der lokalen soep-preparation-Kopie):
-
-```console
-$ pixi run pytask     # baut die Pipeline (führt die task_-Skripte aus)
-```
-
-Die `analyse_`-Skripte werden anschließend ausgeführt bzw. sind in die Pipeline
-eingebunden.
-
-> **SOEP-Rohdaten sind nicht enthalten.** Die Skripte benötigen die lizenzierten
-> SOEP-Core-Rohdaten (Version 41) im Verzeichnis `soep_preparation/data/V41`.
-> Diese Daten dürfen aus lizenzrechtlichen Gründen **nicht** weitergegeben werden
-> und sind daher nicht Teil dieses Repositories. Zugang zum SOEP erfolgt über das
-> DIW Berlin. Die aus den Daten gewonnenen **aggregierten** Kennzahlen
-> (Vermögensanteile, γ, Ersatzrate) sind in der Bachelorarbeit dokumentiert und in
-> den Modell-Skripten (Teil 1) hinterlegt.
-
----
-
-## Software
+ ## Software
 
 Beide Teile nutzen `pixi` zur Umgebungsverwaltung; die genauen Abhängigkeiten
 liegen in der `pixi.toml`/`pixi.lock` des jeweiligen übergeordneten Repositories
@@ -103,8 +87,3 @@ liegen in der `pixi.toml`/`pixi.lock` des jeweiligen übergeordneten Repositorie
 ## Datengrundlage
 
 Sozio-oekonomisches Panel (SOEP-Core, Version 41), DIW Berlin.
-
-## Zur Bachelorarbeit
-
-Der vollständige methodische Rahmen, die Kalibrierung und die Ergebnisse sind in
-der Bachelorarbeit beschrieben *[ggf. Verweis oder Abgabeort ergänzen]*.
